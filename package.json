@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev\" \"wait-on http://localhost:3000/xyzstore && open http://localhost:3000/xyzstore\"",
+    "dev": "cross-env DEPLOY_ENV=github-pages concurrently \"next dev\" \"wait-on http://localhost:3000/xyzstore && open http://localhost:3000/xyzstore\"",
     "build": "next build",
+    "build:github-pages": "cross-env DEPLOY_ENV=github-pages next build && next export",
+    "build:vercel": "cross-env DEPLOY_ENV=vercel next build && next export",
     "start": "next start",
     "export": "next export",
     "lint": "eslint"
@@ -20,6 +22,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
     "open": "^10.2.0",

@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
 
+const isGithubPages = process.env.DEPLOY_ENV === "github-pages";
+
 const nextConfig: NextConfig = {
-  output: "export", 
+  output: "export",
   images: { unoptimized: true },
-  basePath: "/xyzstore", 
-  assetPrefix: "/xyzstore/",
+  basePath: isGithubPages ? "/xyzstore" : "",
+  assetPrefix: isGithubPages ? "/xyzstore/" : "",
   trailingSlash: true,
 };
 
