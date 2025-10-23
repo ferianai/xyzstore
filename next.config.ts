@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   basePath: "/xyzstore", 
   assetPrefix: "/xyzstore/",
+  trailingSlash: true,
 };
 
 export default nextConfig;
