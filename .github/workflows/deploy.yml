@@ -2,7 +2,8 @@ name: Deploy Next.js Static Export to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -12,8 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build static site
+      - name: Build static export
         run: npm run build
 
       - name: Deploy to GitHub Pages
