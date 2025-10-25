@@ -1,24 +1,33 @@
-"use client";
-
-import { useProducts } from "@/hooks/useProducts";
+// app/pages/products.tsx (Pages Router)
 import ProductTable from "@/components/molecules/product/ProductTable";
+import { Product } from "@/types/product";
+import { getProducts } from "@/lib/api/products"; // versi fetch helper biasa
 
-export default function ProductsPage() {
-  const { products, loading, error, addProduct, editProduct, removeProduct } = useProducts();
+type Props = {
+  products: Product[];
+};
 
-  if (loading) return <p className="p-6">Memuat data...</p>;
-
-  if (error) return <p className="p-6 text-red-500">Error: {error}</p>;
-
+export default function ProductsPage({ products }: Props) {
   return (
     <main className="p-6">
       <h1 className="text-2xl font-bold mb-4">Daftar Produk</h1>
       <ProductTable
         products={products}
-        onAdd={addProduct}
-        onEdit={editProduct}
-        onDelete={removeProduct}
+        onAdd={async () => alert("Tambah produk hanya tersedia di Vercel")}
+        onEdit={async () => alert("Edit produk hanya tersedia di Vercel")}
+        onDelete={async () => alert("Hapus produk hanya tersedia di Vercel")}
       />
     </main>
   );
+}
+
+// Build time static generation
+export async function getStaticProps() {
+  try {
+    const { data } = await getProducts();
+    return { props: { products: data } };
+  } catch (err) {
+    console.error(err);
+    return { props: { products: [] } };
+  }
 }
