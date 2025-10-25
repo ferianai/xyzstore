@@ -4,9 +4,11 @@ import { useProducts } from "@/hooks/useProducts";
 import ProductTable from "@/components/molecules/product/ProductTable";
 
 export default function ProductsPage() {
-  const { products, loading, addProduct, editProduct, removeProduct } = useProducts();
+  const { products, loading, error, addProduct, editProduct, removeProduct } = useProducts();
 
   if (loading) return <p className="p-6">Memuat data...</p>;
+
+  if (error) return <p className="p-6 text-red-500">Error: {error}</p>;
 
   return (
     <main className="p-6">

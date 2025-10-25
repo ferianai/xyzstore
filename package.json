@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "cross-env DEPLOY_ENV=github-pages concurrently \"next dev\" \"wait-on http://localhost:3000/xyzstore && open http://localhost:3000/xyzstore\"",
+    "dev-local": "cross-env DEPLOY_ENV=local next dev",
     "build": "next build",
-    "build:github-pages": "cross-env DEPLOY_ENV=github-pages next build && next export",
-    "build:vercel": "cross-env DEPLOY_ENV=vercel next build && next export",
+    "build:github-pages": "cross-env DEPLOY_ENV=github-pages next build",
+    "build:vercel": "cross-env DEPLOY_ENV=vercel next build",
     "start": "next start",
     "export": "next export",
     "lint": "eslint"
